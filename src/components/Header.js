@@ -8,7 +8,7 @@ function Header() {
                 <img src={troll} className="header-img" alt="troll face" />
                 <p>Meme Generator</p>          
             </div>
-            <p className="header-text">HackFS - Meme Generator</p>
+            <p className="header-text">NFT Meme Generator</p>
         </div>
     );
 }
