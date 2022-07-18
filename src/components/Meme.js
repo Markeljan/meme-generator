@@ -1,11 +1,18 @@
 import memesData from "../memesData";
+import {useState} from "react";
 
 function Meme() {
-    function getMemeImage() {
-        const memesArray = memesData.data.memes;
-        const randomIndex = Math.floor(Math.random() * memesArray.length);
-        const url = memesArray[randomIndex].url;
+
+    const memesArray = memesData.data.memes;
+    const [url, setUrl] = useState(memesArray[getRandomIndex()].url);
+    
+    function getMeme() {
+        setUrl(memesArray[getRandomIndex()].url)
         console.log(url);
+    }
+
+    function getRandomIndex() {
+        return ( Math.floor(Math.random() * memesArray.length) )
     }
  
     return (
@@ -14,7 +21,9 @@ function Meme() {
                 <input className="meme-input" placeholder="top text"></input>
                 <input className="meme-input" placeholder="bottom text"></input>
             </div>
-            <button onClick={getMemeImage} className="meme-button">Get a new meme image 🖼</button>
+            <button onClick={getMeme} className="meme-button">Get a new meme image 🖼</button>
+
+            <img className="meme-img" src={url}></img>
         </div>
     );
 
