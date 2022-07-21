@@ -3,27 +3,72 @@ import {useState} from "react";
 
 function Meme() {
 
-    const memesArray = memesData.data.memes;
-    const [url, setUrl] = useState(memesArray[getRandomIndex()].url);
-    
+    const [allMemeImages, setAllMemeImages] = useState(memesData.data.memes);
+    const [meme, setMeme] = useState(
+        {
+            topText: "",
+            bottomText: "",
+            imageUrl: allMemeImages[getRandomIndex()].url
+        }    );
+
+    function handleChange(event) {
+        const targetName = event.target.name; 
+        const targetValue = event.target.value;
+        setMeme(prevMeme => ({
+            ...prevMeme,
+            [targetName]: targetValue
+        }))
+    }
+
+    function handleSubmit(event) {
+        console.log(meme);
+        event.preventDefault();
+
+    }
+ 
     function getMeme() {
-        setUrl(memesArray[getRandomIndex()].url)
-        console.log(url);
+        setMeme(prevMeme => {
+            const randomUrl = allMemeImages[getRandomIndex()].url
+            return {
+                ...prevMeme,
+                imageUrl: randomUrl
+            }
+        });
     }
 
     function getRandomIndex() {
-        return ( Math.floor(Math.random() * memesArray.length) )
+        return ( Math.floor(Math.random() * allMemeImages.length) )
     }
  
     return (
         <div className="meme-container">
-            <div className="meme-inputs">
-                <input className="meme-input" placeholder="top text"></input>
-                <input className="meme-input" placeholder="bottom text"></input>
-            </div>
-            <button onClick={getMeme} className="meme-button">Get a new meme image 🖼</button>
 
-            <img className="meme-img" src={url}></img>
+            <form onSubmit={handleSubmit}>
+                <div className="meme-inputs">
+                    <textarea 
+                        name="topText"
+                        value={meme.topText}
+                        className="meme-input" 
+                        placeholder="top text"
+                        onChange={handleChange}
+                    />
+                    <textarea 
+                        name="bottomText"
+                        value={meme.bottomText}
+                        className="meme-input" 
+                        placeholder="bottom text"
+                        onChange={handleChange}
+                    />
+                </div>
+        
+                <button onClick={getMeme} className="meme-button">Get a new meme image 🖼</button>
+
+            </form>
+            <div className="image-container">
+                <p className="meme-text-top">{meme.topText}</p>
+                <p className="meme-text-bottom">{meme.bottomText}</p>
+                <img className="meme-img" alt="dank meme" src={meme.imageUrl}></img>
+            </div>
         </div>
     );
 

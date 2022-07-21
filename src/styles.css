@@ -64,8 +64,63 @@ code {
 
 }
 
-.meme-img {
-  width: 100%;
-  max-height: 500px;
-  object-fit:scale-down;
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+
+}
+
+.meme-image {
+  object-fit:cover;
+}
+
+.meme-text-top {
+  font-size: 38px;
+  font-weight: 500;
+  color: white;
+  position: absolute;
+  top: 0%;
+  font-family: impact, sans-serif;
+  font-size: 2em;
+  text-transform: uppercase;
+  color: white;
+  letter-spacing: 1px;
+  text-shadow:
+      2px 2px 0 #000,
+      -2px -2px 0 #000,
+      2px -2px 0 #000,
+      -2px 2px 0 #000,
+      0 2px 0 #000,
+      2px 0 0 #000,
+      0 -2px 0 #000,
+      -2px 0 0 #000,
+      2px 2px 5px #000;
+
+}
+
+.meme-text-bottom {
+  font-size: 38px;
+  font-weight: 500;
+  color: white;
+  position: absolute;
+  bottom: 0%;
+  font-family: impact, sans-serif;
+  font-size: 2em;
+  text-transform: uppercase;
+  color: white;
+  letter-spacing: 1px;
+  text-shadow:
+      2px 2px 0 #000,
+      -2px -2px 0 #000,
+      2px -2px 0 #000,
+      -2px 2px 0 #000,
+      0 2px 0 #000,
+      2px 0 0 #000,
+      0 -2px 0 #000,
+      -2px 0 0 #000,
+      2px 2px 5px #000;
+  
 }
