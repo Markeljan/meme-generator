@@ -11,11 +11,16 @@ function Meme() {
         }    );
 
     React.useEffect( () => {
-        fetch(`https://api.imgflip.com/get_memes`)
-        .then(res => res.json())
-        .then(data => setAllMemes((data.data.memes)))
+        async function getMemes() {
+            const res = await fetch("https://api.imgflip.com/get_memes");
+            const data = await res.json();
+            setAllMemes(data.data.memes)
+        }
+        getMemes();
+
+        
     }, [])
-    
+
 
     function handleChange(event) {
         const targetName = event.target.name; 
